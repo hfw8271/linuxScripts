@@ -216,4 +216,8 @@ setUsers(){
 
 }
 
+setPerms(){
+    ./perms.sh
+}
+
 chandiFortnite()
