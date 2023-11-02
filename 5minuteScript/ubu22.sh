@@ -238,11 +238,12 @@ setChattr(){
 
 setNetwork(){
     service network-manager restart
-    host
+    #host
     firewall
 }
 
 host(){
+    echo "nah"
     #Set hosts manually before running the script
     #echo "ALL:ALL" > /etc/hosts.deny
     #echo "#PUT THE SERVICES YOU WANT#" > /etc/hosts.allow
