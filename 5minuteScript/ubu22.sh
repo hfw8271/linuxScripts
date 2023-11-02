@@ -243,7 +243,7 @@ setNetwork(){
 }
 
 host(){
-    echo "nah"
+    echo ""
     #Set hosts manually before running the script
     #echo "ALL:ALL" > /etc/hosts.deny
     #echo "#PUT THE SERVICES YOU WANT#" > /etc/hosts.allow
@@ -674,5 +674,5 @@ lastChecks(){
 	cat /etc/default/grub | grep "enforcing=0" && echo "check /etc/default/grub for enforcing" || echo "/etc/default/grub does not contain enforcing=0"
 }
 
-chandiFortnite()
+chandiFortnite
 echo "you prolly broke something stupid"
