@@ -238,8 +238,8 @@ setChattr(){
 
 setNetwork(){
     service network-manager restart
-    host()
-    firewall()
+    host
+    firewall
 }
 
 host(){
@@ -263,9 +263,9 @@ firewall(){
 }
 
 setUsers(){
-    copyConfigFiles()
-    manageUsers()
-    manageUserGroups()
+    copyConfigFiles
+    manageUsers
+    manageUserGroups
 }
 
 copyConfigFiles() {
