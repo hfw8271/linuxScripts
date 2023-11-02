@@ -11,6 +11,8 @@
 
 echo "bruh lets win"
 
+USERS=./users.txt
+ADMINS=./admins.txt
 
 chandiFortnite(){
     starterChecks
@@ -38,8 +40,6 @@ checkSudo(){
 }
 
 checkFilesPresent(){
-    USERS=./users.txt
-    ADMINS=./admins.txt
 
     #dont add root to the users or admin files, you cant change root passowrd without other options enabled
     if [ ! -f "$USERS" ] then  
@@ -78,7 +78,7 @@ forensics(){
     getCron
     echo "get passwd group"
     getPasswdGroup
-    echo "get host"
+    echo "get"
     getHost
 }
 
@@ -671,5 +671,5 @@ lastChecks(){
 	cat /etc/default/grub | grep "enforcing=0" && echo "check /etc/default/grub for enforcing" || echo "/etc/default/grub does not contain enforcing=0"
 }
 
-chandiFortnite
+chandiFortnite()
 echo "you prolly broke something stupid"
