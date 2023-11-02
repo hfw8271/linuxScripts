@@ -671,5 +671,5 @@ lastChecks(){
 	cat /etc/default/grub | grep "enforcing=0" && echo "check /etc/default/grub for enforcing" || echo "/etc/default/grub does not contain enforcing=0"
 }
 
-chandiFortnite()
+chandiFortnite
 echo "you prolly broke something stupid"
