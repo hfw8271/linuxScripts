@@ -47,10 +47,12 @@ checkFilesPresent(){
         echo "please make a file called users.txt with all users that should be on the system, admin and regular users"
         #you dont need deamons or root here, just users, root wont matter because everything for root is already configured in the script
         exit 1
+    fi
     if [ ! -f "$ADMINS" ] then
         echo "admins.txt file not found, thus admins cannot be properly configured"
         echo "please make a file called admins.txt with all admins that should be on the system"
         exit 1
+    fi
 }
 
 #######sill gotta make some 
