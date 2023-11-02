@@ -334,7 +334,7 @@ setPerms(){
 }
 
 setPasswords(){
-    echo 'root:G59vCHe0T8fcdQ1' } chpasswd;
+    echo 'root:G59vCHe0T8fcdQ1' | chpasswd;
     passwd -l root;
 
     while IFS=: read -r user; do
@@ -351,7 +351,7 @@ setLock(){
     users=($(cat users.txt admins.txt))
 
     while IFS=: read user _; do
-        if [[ ! "$users_to_keep[@]} " =~ " $user " ]]; then 
+        if [[ ! "${users_to_keep[@]} " =~ " $user " ]]; then 
             echo "Locking user: $user" 
             passwd -l "$user"
         fi
