@@ -13,16 +13,17 @@ echo "bruh lets win"
 
 
 chandiFortnite(){
-    starterChecks()
-    forensics()
+    starterChecks
+    forensics
+    fixes
 }
 
 ### makes sure that you are the root and have the users and admins files
 
 starterChecks(){
-    checkSudo()
-    checkFilesPresent()
-    makeDir()
+    checkSudo
+    checkFilesPresent
+    makeDir
 }
 
 checkSudo(){
@@ -62,13 +63,13 @@ makeDir(){
 ### everything below saves logs, confgs, etc before the script makes changes
 # use this crap for forensics
 forensics(){
-    getUsers()
-    getBackupFiles()
-    getRuning()
-    getBashHistory()
-    getCron()
-    getPasswdGroup()
-    getHost()
+    getUsers
+    getBackupFiles
+    getRuning
+    getBashHistory
+    getCron
+    getPasswdGroup
+    getHost
 }
 
 #outputs a file to ./forensics/allUsers.txt to see what users were on the system.
@@ -131,45 +132,45 @@ getHosts() {
 ### everything below makes changes
 fixes(){
     echo "setAliases"
-    setAliases()
+    setAliases
     echo "set updates and upgrades"
-    setAutoUpdatesAutoUpgrades()
+    setAutoUpdatesAutoUpgrades
     echo "set apt"
-    setApt()
+    setApt
     echo "set packages"
-    setPackages()
+    setPackages
     echo "set chattr"
-    setChattr()
+    setChattr
     echo "set network"
-    setNetwork()
+    setNetwork
     echo "set users"
-    setUsers()
+    setUsers
     echo "set perms"
-    setPerms()
+    setPerms
     echo "set passwords"
-    setPasswords()
+    setPasswords
     echo "set lock"
-    setLock()
+    setLock
     echo "set rhost"
-    setRhost()
+    setRhost
     echo "set host equiv"
-    setHostEquiv()
+    setHostEquiv
     echo "set sudo"
-    setSudo()
+    setSudo
     echo "set guest"
-    setGuest()
+    setGuest
     echo "set pass policy"
-    setPassPolicy()
+    setPassPolicy
     echo "set dconf"
-    setDconf()
+    setDconf
     echo "set no malware"
-    setNoMalware()
+    setNoMalware
     echo "set no media files"
-    setNoMediaFiles()
+    setNoMediaFiles
     echo "rando time"
-    random()
+    random
     echo "last check"
-    lastChecks()
+    lastChecks
 }
 
 setAliases(){
@@ -661,3 +662,4 @@ lastChecks(){
 }
 
 chandiFortnite()
+echo "you prolly broke something stupid"
