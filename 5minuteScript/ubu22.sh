@@ -21,8 +21,11 @@ chandiFortnite(){
 ### makes sure that you are the root and have the users and admins files
 
 starterChecks(){
+    echo "check sudo"
     checkSudo
+    echo "check files"
     checkFilesPresent
+    echo "mk dir"
     makeDir
 }
 
@@ -63,12 +66,19 @@ makeDir(){
 ### everything below saves logs, confgs, etc before the script makes changes
 # use this crap for forensics
 forensics(){
+    echo "get users"
     getUsers
+    echo "get backups"
     getBackupFiles
+    echo "get running"
     getRuning
+    echo "get bash history"
     getBashHistory
+    echo "get cron"
     getCron
+    echo "get passwd group"
     getPasswdGroup
+    echo "get host"
     getHost
 }
 
