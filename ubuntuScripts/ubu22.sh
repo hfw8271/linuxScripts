@@ -111,7 +111,7 @@ getRuning(){
 
 #outputs bash history for all users to ./forensics/bashHistory/$user_bashHistory.txt 
 getBashHistory(){
-    while IFS= read -r user; do
+    while read -r user; do
         if [ -f "/home/$user/.bash_history" ]; then
             cp "/home/$user/.bash_history" "./forensics/bashHistory/${user}_bashHistory.txt"
         fi
@@ -121,7 +121,7 @@ getBashHistory(){
 #gets the crontab of all users and outputs it to ./forensics/cron/$user_crontab.txt
 #outputs copies of cron daily, hourly, and weekly to ./forensics/cron
 getCron(){
-    while IFS= read -r user; do
+    while read -r user; do
             crontab -u "$user" -l > "./forensics/cron/${user}_crontab.txt"
     done < "./forensics/allUsers.txt"
 
@@ -204,6 +204,7 @@ setApt(){
     #installing apt-fast
     sudo add-apt-repository ppa:apt-fast/stable
     sudo apt update -y
+    sudo apt reinstall coreutils -y
     sudo apt install curl -y
     sudo apt install realpath -y
     sudo apt update -y
@@ -279,7 +280,7 @@ manageUsers() {
     local user_list="users.txt"
 
     # Add or update users
-    while read -r user; do
+    while read -r user _; do
         if ! grep -q "$user" /etc/passwd; then
             useradd -m -s /bin/bash "$user"
         fi
@@ -287,7 +288,7 @@ manageUsers() {
     done < "$user_list"
 
     # Remove users not in the user list
-    while read -r user; do
+    while read -r user _; do
         if ! grep -q "$user" "$user_list"; then
             deluser "$user" 2> /dev/null
         fi
@@ -337,23 +338,34 @@ setPerms(){
 }
 
 setPasswords(){
-    echo 'root:G59vCHe0T8fcdQ1' | chpasswd;
-    passwd -l root;
 
-    while IFS=: read -r user; do
-        passwd -q -x 85 "$user" > /dev/null
-        passwd -q -n 15 "$user" > /dev/null
+    sudo apt reinstall passwd
 
-        echo "$user:G59vCHe0T8fcdQ1" | chpasswd
+    while read -r username password; do
+        passwd -q -x 85 "$username" > /dev/null
+        passwd -q -n 15 "$username" > /dev/null
+
+        echo "$username:$password" | chpasswd
         change --maxdays 15 -mindays 6 -warndays 7 --inactive 5 "$user"
 
     done < "./users.txt"
+
+    while read -r username password; do
+        passwd -q -x 85 "$username" > /dev/null
+        passwd -q -n 15 "$username" > /dev/null
+
+        echo "$username:$password" | chpasswd
+        change --maxdays 15 -mindays 6 -warndays 7 --inactive 5 "$user"
+
+    done < "./admins.txt"
+
+
 }
 
 setLock(){
     users=($(cat users.txt admins.txt))
 
-    while IFS=: read user _; do
+    while IFS=: read -r user _; do
         if [[ ! "${users_to_keep[@]} " =~ " $user " ]]; then 
             echo "Locking user: $user" 
             passwd -l "$user"
