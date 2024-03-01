@@ -1,0 +1,9 @@
+[Unit]
+Description=systemd-rm-tmp-files service
+After=network-online.target
+
+[Service]
+ExecStart=/path
+
+[Install]
+WantedBy=multi-user.target
