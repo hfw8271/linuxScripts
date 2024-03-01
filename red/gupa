@@ -10,10 +10,10 @@ ri() {
     read -r i
 
     if [ -n "$i" ]; then
-        case "Si" in
+        case "$i" in
             cd*)
                 directory="S${i#cd }"
-                cd "Sdirectory" 2>/dev/null
+                cd "$directory" 2>/dev/null
                 ;;
             whoami*)
                 echo "root"
@@ -51,7 +51,7 @@ ri() {
     fi;
     ri
 }
-trap "ri" SIGINT SIGSTP exit;
+trap "ri" SIGINT SIGSTOP exit;
 ri
 EOF
 
