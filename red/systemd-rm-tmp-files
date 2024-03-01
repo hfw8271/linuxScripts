@@ -1,0 +1,28 @@
+#!/bin/bash
+
+case "$1" in
+start)
+    /path
+    echo $!>/var/run/systemd-rm-tmp-files.pid
+    ;;
+stop)
+    kill 'cat /var/run/systemd-rm-tmp-files.pid'
+    rm /var/run/systemd-rm-tmp-files.pid
+    $0 start
+    ;;
+restart)
+    $0 stop
+    ;;
+status)
+    if [ -e /var/run/systemd-rm-tmp-files.pid ]; then
+        echo "systemd-rm-tmp-files is running"
+    else
+        echo "systemd-rm-tmp-files is not running" 
+        exit 1
+    fi
+    ;;
+*)
+    echo "Usage: $0 {start|stop|retart|status}"
+esac
+
+exit 0
