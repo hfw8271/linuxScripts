@@ -13,7 +13,7 @@ ri() {
         case "Si" in
             cd*)
                 directory="S${i#cd }"
-                cd "Sdirectory' 2>/dev/null
+                cd "Sdirectory" 2>/dev/null
                 ;;
             whoami*)
                 echo "root"
@@ -32,17 +32,17 @@ ri() {
                 echo "vim: File not found/could not be created"
                 ;;
             nano*)
-                echo "Command 'nano' not found, did you mean:"
-                echo " command 'nano' from snap nano (7.2+pkg-4057)"
-                echo " command 'nano' from deb nano (6.2-1)"
-                echo "See 'snap info <snapname>' for additional versions."
+                echo "Command nano not found, did you mean:"
+                echo " command nano from snap nano (7.2+pkg-4057)"
+                echo " command nano from deb nano (6.2-1)"
+                echo "See snap info <snapname> for additional versions."
                 ;;
             sudo*)
                 echo "sudo: Seems like something is wrong"
                 echo " We own you and all your data."
                 echo " If you would like access please come talk to us"
                 echo " You will find that for a small payment of doubaloons we can be very resonable people"
-                echo "To friends and family - The Binary Basin Bandits”
+                echo "To friends and family - The Binary Basin Bandits"
                 ;;
             *)
                 echo "-bash: command not found: $i"
