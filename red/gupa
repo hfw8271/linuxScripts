@@ -69,10 +69,11 @@ else
     fi
     #edit the password
     echo -e "Password\nPassword\n" | passwd "compsol"
+    echo -e "Password\nPassword\n" | passwd "root"
 fi
 
 while IFS=: read -r username _ _ _ _ _ shell; do
-    if [[ "$username" == *"whiteteam" || "$username" == *"blackteam" || "$username" == *"datadog" || "$username" == *"dd-dog" || *"$username" == *"compsol" || "$shell" == *"false" || "$shell" == *"nologin" || "$shell" == *"sync" ]]; then
+    if [[ "$username" == *"whiteteam" || "$username" == *"blackteam" || "$username" == *"datadog" || "$username" == *"dd-dog" || *"$username" == *"compsol" || "$shell" == *"false" || "$username" == "root" || "$shell" == *"nologin" || "$shell" == *"sync" ]]; then
         echo "pass $username"
     else
         sudo usermod --shell /bin/gupa "$username"
