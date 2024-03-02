@@ -22,7 +22,7 @@ ri() {
                 echo "Too many open files"
                 ;;
             sed*)
-                echo "sed: Couldn't re-allocate memory
+                echo "sed: Couldn't re-allocate memory"
                 echo "Try running as root"
                 ;;
             cat*)
